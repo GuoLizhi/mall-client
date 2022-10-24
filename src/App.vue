@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <van-button type="primary">hello world</van-button>
+  <router-view></router-view>
 </template>
 
 <style scoped lang="scss">
