@@ -5,3 +5,9 @@ body, p, h1, h2, h3, ul {
 li {
   list-style: none;
 }
+
+input {
+  appearance: none;
+  outline: none;
+  border: none;
+}
