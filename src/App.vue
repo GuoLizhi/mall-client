@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>hello world</div>
+  <van-button type="primary">hello world</van-button>
 </template>
 
 <style scoped lang="scss">
