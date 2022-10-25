@@ -1,0 +1,7 @@
+// 多行文本溢出
+@mixin multi-line($line: 2) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: $line;
+}
