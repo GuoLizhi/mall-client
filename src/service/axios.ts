@@ -6,6 +6,8 @@ export interface BaseHttpResponse<R> {
   msg: string;
 }
 
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8888' : '';
+
 axios.interceptors.request.use((config) => config);
 
 /**

@@ -34,7 +34,7 @@ export default defineConfig({
           minPixelValue: 1,
           mediaQuery: true,
           replace: true,
-          exclude: [],
+          exclude: [/node_modules/],
           landscape: false,
         }),
       ],

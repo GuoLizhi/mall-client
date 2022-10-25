@@ -1,32 +1,36 @@
 <script setup lang="ts">
+import cartStore from '@/store/cart';
+
+const store = cartStore();
+store.initCartList();
 
 </script>
 <template>
   <div class="cart">
     <div class="store-list">
-      <div class="store-item">
+      <div class="store-item" v-for="shopItem in store.shops" :key="shopItem.shopId">
         <p class="store-name">
-          <em class="unselect"></em>
-          看客图书专营店
+          <em :class="shopItem.isSelected ? 'selected' : 'unselect'"></em>
+          {{shopItem.shopName}}
         </p>
         <div class="cart-list">
-          <div class="cart-item">
+          <div class="cart-item" v-for="cartItem in shopItem.carts" :key="cartItem.id">
             <div class="cart-selector">
-              <em class="selected"></em>
+              <em :class="cartItem.isSelected ? 'selected' : 'unselect'"></em>
             </div>
             <div class="cart-cover">
               <img
-                src="//imgservice.suning.cn/uimg1/b2c/image/ctdUTaMiHsO1tPMFQRaKkw.png_200w_200h_4e"
+                :src="cartItem.coverImg"
                 alt=""
               >
             </div>
             <div class="good-detail">
-              <p class="title">纽伯瑞儿童文学奖 世界经典文学名著 四五六年级中小学生课外阅读故事书非注音版10-12-14岁课外书 草原小镇</p>
+              <p class="title">{{cartItem.title}}</p>
               <div class="price-container">
-                <span class="price">100.00</span>
+                <span class="price">{{cartItem.price}}</span>
                 <div class="count-container">
                   <span class="minus">-</span>
-                  <span class="count">10</span>
+                  <span class="count">{{cartItem.count}}</span>
                   <span class="plus">+</span>
                 </div>
               </div>
