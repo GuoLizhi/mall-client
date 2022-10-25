@@ -1,3 +1,6 @@
+<script setup lang="ts">
+
+</script>
 <template>
   <div class="cart">
     <div class="store-list">
