@@ -4,11 +4,16 @@ import { ref } from 'vue';
 import { login } from '@/service/user';
 
 const username = ref('');
+const nickname = ref('');
 const password = ref('');
 
-async function handleLogin() {
+async function handleRegist() {
   if (!username.value) {
     Toast.fail('请输入用户名');
+    return;
+  }
+  if (!nickname.value) {
+    Toast.fail('请输入昵称');
     return;
   }
   if (!password.value) {
@@ -22,15 +27,16 @@ async function handleLogin() {
 </script>
 <template>
   <div class="login">
-    <p class="title">用户登录</p>
+    <p class="title">用户注册</p>
     <van-cell-group>
       <van-field v-model="username" label="用户名" />
+      <van-field v-model="nickname" label="昵称" />
       <van-field v-model="password" type="password" label="密码" />
     </van-cell-group>
-    <van-button round block type="primary" class="submit" @click="handleLogin">
+    <van-button round block type="primary" class="submit" @click="handleRegist">
       登陆
     </van-button>
-    <router-link to="/regist">没有账号？立即注册</router-link>
+    <router-link to="/login">已有账号？立即登录</router-link>
   </div>
 </template>
 <style lang="scss" scoped>

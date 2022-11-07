@@ -6,9 +6,16 @@ export interface BaseHttpResponse<R> {
   msg: string;
 }
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8888' : '';
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : '';
 
 axios.interceptors.request.use((config) => config);
+
+axios.interceptors.response.use((resp) => {
+  if (resp.data && resp.data.code !== 0) {
+    return Promise.reject(resp);
+  }
+  return Promise.resolve(resp);
+});
 
 /**
  * get方法，对应get请求
