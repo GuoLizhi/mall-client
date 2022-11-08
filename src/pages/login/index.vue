@@ -30,7 +30,7 @@ async function handleLogin() {
     <van-button round block type="primary" class="submit" @click="handleLogin">
       登陆
     </van-button>
-    <router-link to="/regist">没有账号？立即注册</router-link>
+    <router-link to="/regist" class="regist">没有账号？立即注册</router-link>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -46,5 +46,11 @@ async function handleLogin() {
   font-size: 40px;
   text-align: center;
   margin-bottom: 24px;
+}
+.regist {
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  font-size: 24px;
 }
 </style>

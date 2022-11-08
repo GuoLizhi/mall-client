@@ -9,6 +9,12 @@ const routes:RouteRecordRaw[] = [{
 }, {
   path: '/regist',
   component: () => import('../pages/regist/index.vue'),
+}, {
+  path: '/',
+  component: () => import('../pages/home/index.vue'),
+}, {
+  path: '/goods-detail',
+  component: () => import('../pages/goods-detail/index.vue'),
 }];
 
 const router = createRouter({

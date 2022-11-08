@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { Toast } from 'vant';
 import { ref } from 'vue';
-import { login } from '@/service/user';
+import { useRouter } from 'vue-router';
+import { regist } from '@/service/user';
 
 const username = ref('');
 const nickname = ref('');
 const password = ref('');
+const router = useRouter();
 
 async function handleRegist() {
   if (!username.value) {
@@ -20,9 +22,21 @@ async function handleRegist() {
     Toast.fail('请输入密码');
     return;
   }
-  const resp = await login({ username: username.value, password: password.value });
+  const resp = await regist({
+    username: username.value,
+    password: password.value,
+    nickname: nickname.value,
+  });
   if (resp === null) return;
-  localStorage.setItem('USER_TOKEN', resp?.token || '');
+  Toast({
+    message: '注册成功',
+    duration: 2000,
+    onClose: () => {
+      router.replace({
+        path: '/login',
+      });
+    },
+  });
 }
 </script>
 <template>
@@ -34,9 +48,9 @@ async function handleRegist() {
       <van-field v-model="password" type="password" label="密码" />
     </van-cell-group>
     <van-button round block type="primary" class="submit" @click="handleRegist">
-      登陆
+      注册
     </van-button>
-    <router-link to="/login">已有账号？立即登录</router-link>
+    <router-link to="/login" class="login-btn">已有账号？立即登录</router-link>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -52,5 +66,11 @@ async function handleRegist() {
   font-size: 40px;
   text-align: center;
   margin-bottom: 24px;
+}
+.login-btn {
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  font-size: 24px;
 }
 </style>
